@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>فلوك زون FlockZone | دفتر مزرعتك في هاتفك</title>
+  <meta name="description" content="فلوك زون: تطبيق لإدارة مزرعة الغنم والماعز والبقر والإبل. سجّل القطيع والولادات والصحة والحليب والمال، بلا إنترنت وبكلمات بسيطة. نزّله مجاناً لأندرويد.">
+  <meta name="theme-color" content="#336560">
+  <link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+  <link rel="apple-touch-icon" href="assets/icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="فلوك زون FlockZone | دفتر مزرعتك في هاتفك">
+  <meta property="og:description" content="سجّل قطيعك وولاداته وصحته وحليبه ومالك، بلا إنترنت وبكلمات بسيطة.">
+  <meta property="og:url" content="https://maher-nofaly.github.io/website/">
+  <meta property="og:image" content="https://maher-nofaly.github.io/website/assets/icon.png">
+  <meta property="og:locale" content="ar_AR">
+  <link rel="preload" href="fonts/Cairo-Bold.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Icon set: one place, used below with <use href="#i-..."> -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3v12M7 10l5 5 5-5M4 20h16"/>
+    </symbol>
+    <symbol id="i-android" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3.5 18a8.5 8.5 0 0 1 17 0z"/>
+      <path d="M7.5 11.5 5.5 8M16.5 11.5l2-3.5"/>
+      <circle cx="9" cy="14.8" r="1" fill="currentColor" stroke="none"/>
+      <circle cx="15" cy="14.8" r="1" fill="currentColor" stroke="none"/>
+    </symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9z"/>
+      <circle cx="8" cy="8" r="1.6"/>
+    </symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 20s-7.5-4.6-7.5-10.2A4.2 4.2 0 0 1 12 7.2a4.2 4.2 0 0 1 7.5 2.6C19.5 15.4 12 20 12 20z"/>
+    </symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3l7.5 3v5.5c0 4.8-3.4 8.3-7.5 9.5-4.1-1.2-7.5-4.7-7.5-9.5V6z"/>
+      <path d="M12 9v6M9 12h6"/>
+    </symbol>
+    <symbol id="i-drop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3s6.5 7 6.5 11.5a6.5 6.5 0 0 1-13 0C5.5 10 12 3 12 3z"/>
+      <path d="M9 15a3 3 0 0 0 3 3"/>
+    </symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="5" width="18" height="16" rx="2.5"/>
+      <path d="M3 10h18M8 3v4M16 3v4M9 15.5l2 2 4-4"/>
+    </symbol>
+    <symbol id="i-box" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/>
+      <path d="M3 7.5 12 12l9-4.5M12 12v9"/>
+    </symbol>
+    <symbol id="i-coins" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <ellipse cx="12" cy="6" rx="7" ry="3"/>
+      <path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/>
+    </symbol>
+    <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="9" cy="8" r="3.5"/>
+      <path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6.5 6.5 0 0 1 3.5 6"/>
+    </symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="4" y="10" width="16" height="11" rx="2.5"/>
+      <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+      <circle cx="12" cy="15.5" r="1.4"/>
+    </symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 4.5h16v11.5H9.5L4 20.5z"/>
+      <path d="M8 8.5h8M8 12h5"/>
+    </symbol>
+    <symbol id="i-wifi-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M2 8.8a15 15 0 0 1 4.2-2.6M10.5 4.6A15 15 0 0 1 22 8.8M5 12.6a10 10 0 0 1 4-2.3M15.5 10.6a10 10 0 0 1 3.5 2M8.5 16.3a5 5 0 0 1 6.5-.6M12 20h.01M3 3l18 18"/>
+    </symbol>
+    <symbol id="i-ban" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M5.6 5.6l12.8 12.8"/>
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M8 12.3l2.8 2.8L16 9.5"/>
+    </symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3.5 21.5 20h-19z"/>
+      <path d="M12 10v4.5M12 17.2h.01"/>
+    </symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z"/>
+      <path d="M10 21h4"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="فلوك زون">
+      <img src="assets/logo-mark.svg" alt="" width="44" height="44">
+      <span>فلوك زون<small>FlockZone</small></span>
+    </a>
+    <nav class="nav" aria-label="أقسام الصفحة">
+      <a href="#features">المزايا</a>
+      <a href="#pricing">الاشتراكات</a>
+      <a href="#install">طريقة التثبيت</a>
+      <a href="#faq">أسئلة</a>
+    </nav>
+    <a class="btn btn-primary btn-small" data-apk href="#install">
+      <svg><use href="#i-download"/></svg>
+      نزّل التطبيق
+    </a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">تطبيق إدارة المزرعة</span>
+        <h1>دفتر مزرعتك <span>في هاتفك</span></h1>
+        <p class="lead">سجّل قطيعك وولاداته وصحته وحليبه ومالك في مكان واحد. يعمل بلا إنترنت، بكلمات بسيطة وأزرار كبيرة.</p>
+        <ul class="species" aria-label="الحيوانات">
+          <li>الغنم</li>
+          <li>الماعز</li>
+          <li>البقر</li>
+          <li>الإبل</li>
+        </ul>
+        <div class="cta">
+          <a class="btn btn-primary btn-big" data-apk href="#install">
+            <svg><use href="#i-android"/></svg>
+            <span class="btn-label">نزّل التطبيق<small>لهواتف أندرويد · مجاناً</small></span>
+          </a>
+          <a class="btn btn-ghost" href="#install">كيف أثبّته؟</a>
+        </div>
+        <p class="meta">الإصدار <b>1.0.0</b> · أندرويد <b>7</b> فما فوق · بلا إعلانات</p>
+      </div>
+
+      <!-- Phone illustration -->
+      <div aria-hidden="true">
+        <div class="phone">
+          <div class="screen">
+            <div class="screen-head">
+              <img src="assets/logo-mark.svg" alt="">
+              <div><b>مزرعة أبو أحمد</b><span>اليوم: ٣ مهام</span></div>
+            </div>
+            <div class="screen-body">
+              <div class="stats">
+                <span><b>١٢٤</b>رأس</span>
+                <span><b>٩</b>حوامل</span>
+                <span><b>٣٢</b>لتر حليب</span>
+              </div>
+              <p class="screen-title">مهام اليوم</p>
+              <div class="task">
+                <i><svg><use href="#i-shield"/></svg></i>
+                <div><b>تحصين ١٢ رأس غنم</b><small>الحظيرة الشمالية</small></div>
+              </div>
+              <div class="task gold">
+                <i><svg><use href="#i-heart"/></svg></i>
+                <div><b>ولادة قريبة: نعجة ٤٧</b><small>خلال ٣ أيام</small></div>
+              </div>
+              <div class="task leaf">
+                <i><svg><use href="#i-drop"/></svg></i>
+                <div><b>حليب الصباح</b><small>٨ بقرات</small></div>
+              </div>
+              <div class="tiles">
+                <span><svg><use href="#i-tag"/></svg>القطيع</span>
+                <span><svg><use href="#i-shield"/></svg>الصحة</span>
+                <span><svg><use href="#i-coins"/></svg>المال</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Strip -->
+  <div class="strip">
+    <div class="wrap">
+      <ul>
+        <li><svg><use href="#i-wifi-off"/></svg>يعمل بلا إنترنت</li>
+        <li><svg><use href="#i-chat"/></svg>كلمات بسيطة وأزرار كبيرة</li>
+        <li><svg><use href="#i-lock"/></svg>بياناتك محمية</li>
+        <li><svg><use href="#i-ban"/></svg>بلا إعلانات</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <section id="features">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">المزايا</span>
+        <h2>كل ما تحتاجه مزرعتك</h2>
+        <p>من رقم الأذن إلى الربح آخر الشهر، بلا دفاتر ولا أوراق ضائعة.</p>
+      </div>
+      <div class="features">
+        <article class="card">
+          <div class="icon"><svg><use href="#i-tag"/></svg></div>
+          <h3>القطيع</h3>
+          <p>كل رأس برقمه وحظيرته وعمره، وبحث سريع بالرقم.</p>
+        </article>
+        <article class="card gold">
+          <div class="icon"><svg><use href="#i-heart"/></svg></div>
+          <h3>التكاثر والولادة</h3>
+          <p>التلقيح والفحص والولادة، ومن الحامل ومن قريبة الولادة.</p>
+        </article>
+        <article class="card">
+          <div class="icon"><svg><use href="#i-shield"/></svg></div>
+          <h3>الصحة والتحصين</h3>
+          <p>العلاجات والتحصينات وموعد الجرعة القادمة، وتنبيه «ممنوع البيع» حتى تنتهي مدة الدواء.</p>
+        </article>
+        <article class="card">
+          <div class="icon"><svg><use href="#i-drop"/></svg></div>
+          <h3>الحليب والأوزان</h3>
+          <p>الحليب كل يوم، والأوزان والزيادة اليومية للتسمين.</p>
+        </article>
+        <article class="card gold">
+          <div class="icon"><svg><use href="#i-bell"/></svg></div>
+          <h3>مهام اليوم</h3>
+          <p>ما عليك عمله اليوم في شاشة واحدة، وتنبيه على الهاتف لكل مهمة.</p>
+        </article>
+        <article class="card">
+          <div class="icon"><svg><use href="#i-box"/></svg></div>
+          <h3>المخزون</h3>
+          <p>العلف والدواء: كم عندك، وكم صرفت، ومتى ينقص.</p>
+        </article>
+        <article class="card gold">
+          <div class="icon"><svg><use href="#i-coins"/></svg></div>
+          <h3>المال والتقارير</h3>
+          <p>المبيع والمشترى والمصاريف والديون، وتقارير الربح.</p>
+        </article>
+        <article class="card">
+          <div class="icon"><svg><use href="#i-users"/></svg></div>
+          <h3>أعضاء المزرعة</h3>
+          <p>ادعُ عاملاً أو طبيباً برمز، ولكل منهم ما يناسبه فقط.</p>
+        </article>
+        <article class="card">
+          <div class="icon"><svg><use href="#i-lock"/></svg></div>
+          <h3>نسخة احتياطية وقفل</h3>
+          <p>نسخة احتياطية مشفرة كل يوم، وقفل بالرمز أو البصمة.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Offline band -->
+  <section class="band">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">مصمم للحظيرة</span>
+        <h2 style="margin-top:10px">يعمل حيث لا توجد شبكة</h2>
+        <p>الحظيرة والمرعى بعيدان عن الإنترنت غالباً، لذلك يعمل فلوك زون على هاتفك مباشرة.</p>
+        <ul class="checks">
+          <li><svg><use href="#i-check"/></svg><span>سجّل كل شيء دون إنترنت، وبياناتك تبقى بعد إغلاق التطبيق وإعادة تشغيل الهاتف.</span></li>
+          <li><svg><use href="#i-check"/></svg><span>حين يتصل الهاتف بالإنترنت تتزامن المزرعة بين هواتفك وهواتف عمالك.</span></li>
+          <li><svg><use href="#i-check"/></svg><span>كلمات بلدك: عامة، أو الخليج، أو الشام، أو مصر.</span></li>
+          <li><svg><use href="#i-check"/></svg><span>رموز واضحة وأزرار كبيرة، لمن يقرأ قليلاً أيضاً.</span></li>
+        </ul>
+      </div>
+      <div class="band-art">
+        <img src="assets/logo-full.png" alt="شعار فلوك زون FlockZone" width="360" height="476" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">الاشتراكات</span>
+        <h2>ابدأ مجاناً، واشترك حين تكبر مزرعتك</h2>
+        <p>كل مزايا التطبيق في كل الباقات. الفرق فقط في عدد الرؤوس وعدد العمال.</p>
+      </div>
+
+      <div class="points" aria-label="كيف تُحسب النقاط">
+        <div class="point">
+          <b>نقطة واحدة</b>
+          <span>لكل غنمة أو عنزة</span>
+        </div>
+        <div class="point">
+          <b>5 نقاط</b>
+          <span>لكل بقرة أو ناقة</span>
+        </div>
+      </div>
+
+      <div class="period" role="group" aria-label="مدة الاشتراك">
+        <button type="button" class="active" data-period="month" aria-pressed="true">شهري</button>
+        <button type="button" data-period="year" aria-pressed="false">سنوي <small>وفّر شهرين</small></button>
+      </div>
+
+      <div class="plans">
+        <article class="plan">
+          <h3>المجانية</h3>
+          <p class="price"><bdi>$0</bdi><small>دائماً</small></p>
+          <ul>
+            <li><svg><use href="#i-check"/></svg><span><b>25 نقطة</b>: مثلاً 25 رأس غنم، أو 5 بقرات</span></li>
+            <li><svg><use href="#i-check"/></svg><span>لك وحدك، بلا عمال</span></li>
+            <li><svg><use href="#i-check"/></svg><span>كل مزايا التطبيق</span></li>
+          </ul>
+          <a class="btn btn-ghost" data-apk href="#install">نزّل وابدأ</a>
+        </article>
+
+        <article class="plan">
+          <h3>المزرعة الصغيرة</h3>
+          <p class="price"><bdi data-month="$4.99" data-year="$49.99">$4.99</bdi><small data-month="شهرياً" data-year="سنوياً">شهرياً</small></p>
+          <ul>
+            <li><svg><use href="#i-check"/></svg><span><b>100 نقطة</b>: مثلاً 100 رأس غنم، أو 20 بقرة</span></li>
+            <li><svg><use href="#i-check"/></svg><span>عامل واحد</span></li>
+            <li><svg><use href="#i-check"/></svg><span>كل مزايا التطبيق</span></li>
+          </ul>
+          <a class="btn btn-ghost" href="#subscribe">كيف أشترك؟</a>
+        </article>
+
+        <article class="plan featured">
+          <span class="ribbon">مناسبة لأغلب المزارع</span>
+          <h3>المزرعة المتوسطة</h3>
+          <p class="price"><bdi data-month="$9.99" data-year="$99.99">$9.99</bdi><small data-month="شهرياً" data-year="سنوياً">شهرياً</small></p>
+          <ul>
+            <li><svg><use href="#i-check"/></svg><span><b>250 نقطة</b>: مثلاً 250 رأس غنم، أو 50 بقرة</span></li>
+            <li><svg><use href="#i-check"/></svg><span>3 عمال</span></li>
+            <li><svg><use href="#i-check"/></svg><span>كل مزايا التطبيق</span></li>
+          </ul>
+          <a class="btn btn-primary" href="#subscribe">كيف أشترك؟</a>
+        </article>
+
+        <article class="plan">
+          <h3>المزرعة التجارية</h3>
+          <p class="price"><bdi data-month="$19.99" data-year="$199.99">$19.99</bdi><small data-month="شهرياً" data-year="سنوياً">شهرياً</small></p>
+          <ul>
+            <li><svg><use href="#i-check"/></svg><span><b>500 نقطة</b>: مثلاً 500 رأس غنم، أو 100 بقرة</span></li>
+            <li><svg><use href="#i-check"/></svg><span>5 عمال</span></li>
+            <li><svg><use href="#i-check"/></svg><span>كل مزايا التطبيق</span></li>
+          </ul>
+          <a class="btn btn-ghost" href="#subscribe">كيف أشترك؟</a>
+        </article>
+      </div>
+
+      <div class="extras">
+        <div class="extra">
+          <div class="icon"><svg><use href="#i-users"/></svg></div>
+          <div>
+            <h3>مقاعد عمال مدى الحياة</h3>
+            <p>تحتاج عاملاً زيادة على باقتك؟ اشترِ مقعداً مرة واحدة ويبقى لك دائماً.</p>
+            <p class="seats"><span>مقعد عامل أو راعي أو مساعد طبيب: <b><bdi>$1.99</bdi></b></span><span>مقعد مشرف: <b><bdi>$2.99</bdi></b></span></p>
+          </div>
+        </div>
+        <div class="extra gold">
+          <div class="icon"><svg><use href="#i-heart"/></svg></div>
+          <div>
+            <h3>ادعُ مربين تعرفهم</h3>
+            <p>شارك رمزك من التطبيق. حين يبدأ 5 مربين العمل برمزك، تزيد باقتك المجانية 10 نقاط، مرة واحدة.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="promises">
+        <h3>اطمئن</h3>
+        <ul class="checks">
+          <li><svg><use href="#i-check"/></svg><span>الولادات في مزرعتك تُسجَّل دائماً، حتى لو امتلأت باقتك.</span></li>
+          <li><svg><use href="#i-check"/></svg><span>إذا انتهى اشتراكك لا يُحذف شيء ولا يختفي. فقط تتوقف إضافة رؤوس جديدة فوق الحد.</span></li>
+          <li><svg><use href="#i-check"/></svg><span>بعد انتهاء الاشتراك لك 7 أيام مهلة لتجدّده.</span></li>
+        </ul>
+      </div>
+
+      <div id="subscribe" class="how">
+        <h3>كيف أشترك؟</h3>
+        <ol>
+          <li>افتح التطبيق وسجّل الدخول بحسابك.</li>
+          <li>افتح صفحة «الاشتراك»، واختر الباقة، واضغط «اطلب شهراً» أو «اطلب سنة»، فتُفتح محادثة واتساب مع رقم الاشتراكات وطلبك مكتوب فيها.</li>
+          <li>ادفع بالطريقة المكتوبة في أعلى صفحة «الاشتراك» (داخل سوريا: شام كاش)، وأرسل صورة الإشعار في المحادثة نفسها.</li>
+          <li>نفعّل باقتك فتظهر في هاتفك.</li>
+        </ol>
+        <p class="small">الأسعار بالدولار الأمريكي.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Install -->
+  <section id="install" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">طريقة التثبيت</span>
+        <h2>أربع خطوات وتبدأ</h2>
+        <p>التطبيق غير موجود في متجر Google Play بعد، فتنزّله من هذه الصفحة مباشرة.</p>
+      </div>
+      <ol class="steps">
+        <li>
+          <h3>نزّل الملف</h3>
+          <p>اضغط زر «نزّل التطبيق» وانتظر حتى يكتمل التنزيل.</p>
+        </li>
+        <li>
+          <h3>افتح الملف</h3>
+          <p>اضغط على الإشعار، أو افتح «التنزيلات» واضغط على ملف FlockZone.</p>
+        </li>
+        <li>
+          <h3>اسمح بالتثبيت</h3>
+          <p>إن سألك الهاتف، اضغط «الإعدادات» وفعّل «السماح من هذا المصدر»، ثم ارجع.</p>
+        </li>
+        <li>
+          <h3>ثبّت وافتح</h3>
+          <p>اضغط «تثبيت» ثم «فتح». ستجد فلوك زون بين تطبيقاتك.</p>
+        </li>
+      </ol>
+      <div class="note">
+        <svg><use href="#i-warn"/></svg>
+        <p style="margin:0">قد يظهر تحذير من Google Play Protect لأن التطبيق ليس في المتجر بعد. اضغط «مزيد من التفاصيل» ثم «التثبيت على أي حال». نزّل التطبيق من هذه الصفحة فقط، لا من مواقع أخرى.</p>
+      </div>
+      <div class="center">
+        <a class="btn btn-primary btn-big" data-apk href="#install">
+          <svg><use href="#i-download"/></svg>
+          <span class="btn-label">نزّل التطبيق<small>لهواتف أندرويد 7 فما فوق</small></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">أسئلة</span>
+        <h2>أسئلة يسألها المربون</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>هل يحتاج التطبيق إلى إنترنت؟</summary>
+          <p>لا. تستطيع استعماله على هاتفك دون حساب ودون إنترنت. الإنترنت يلزم فقط لإنشاء حساب ولمزامنة المزرعة بين أكثر من هاتف.</p>
+        </details>
+        <details>
+          <summary>كم سعره؟</summary>
+          <p>التنزيل مجاني، وفيه باقة مجانية دائمة للمزرعة الصغيرة. للمزارع الأكبر باقات من <bdi>$4.99</bdi> في الشهر. التفاصيل في <a href="#pricing">قسم الاشتراكات</a>.</p>
+        </details>
+        <details>
+          <summary>أين تُحفظ بياناتي؟</summary>
+          <p>على هاتفك أولاً. وإن أنشأت حساباً تُرسل نسخة منها مشفرة إلى خادمنا لتصل إلى هواتف مزرعتك. لا نبيع بياناتك، ولا نشاركها، ولا نعرض إعلانات.</p>
+        </details>
+        <details>
+          <summary>كيف أحدّث التطبيق؟</summary>
+          <p>نزّل النسخة الجديدة من هذه الصفحة وثبّتها فوق القديمة. تبقى بياناتك كما هي.</p>
+        </details>
+        <details>
+          <summary>لماذا لا أجده في Google Play؟</summary>
+          <p>سيصل إلى المتجر قريباً. حتى ذلك الحين نزّله من هنا.</p>
+        </details>
+        <details>
+          <summary>هل يعمل على الآيفون؟</summary>
+          <p>هذه الصفحة فيها نسخة أندرويد فقط الآن.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final call -->
+  <section class="final">
+    <div class="wrap">
+      <h2>ابدأ تسجيل مزرعتك اليوم</h2>
+      <p>مجاني، يعمل بلا إنترنت، وبكلمات بسيطة.</p>
+      <a class="btn btn-primary btn-big" data-apk href="#install">
+        <svg><use href="#i-android"/></svg>
+        <span class="btn-label">نزّل فلوك زون<small>لهواتف أندرويد</small></span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>© 2026 فلوك زون FlockZone</span>
+    <span>لا إعلانات، ولا نبيع بياناتك.</span>
+    <span class="credit">تم التطوير والبرمجة بواسطة <a class="author" href="https://maher-nofaly.github.io/almaher/cv.html" target="_blank" rel="noopener">ماهر النوفلي</a></span>
+  </div>
+</footer>
+
+<script>
+  // The only place to change the download link (see README.md).
+  // GitHub gives this address to the newest release's file named FlockZone.apk.
+  var APK_URL = "https://github.com/maher-nofaly/website/releases/latest/download/FlockZone.apk";
+
+  document.querySelectorAll("[data-apk]").forEach(function (a) {
+    a.href = APK_URL;
+  });
+
+  // Month / year switch of the prices.
+  var periodButtons = document.querySelectorAll("[data-period]");
+  periodButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      var period = button.getAttribute("data-period");
+      periodButtons.forEach(function (b) {
+        var on = b === button;
+        b.classList.toggle("active", on);
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+      document.querySelectorAll("[data-month]").forEach(function (el) {
+        el.textContent = el.getAttribute("data-" + period);
+      });
+    });
+  });
+</script>
+</body>
+</html>
